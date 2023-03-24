@@ -7,7 +7,7 @@
 import java.awt.*;
 import javax.swing.*;
 
-public class GUIDemo1 {
+public class Main {
     public static void main(String[] args) {
         JFrame demo = new JFrame();
         demo.setSize(400, 300);
