@@ -19,6 +19,7 @@ public class UML_Editor extends JFrame {
         getContentPane().add(canvas, BorderLayout.CENTER);
 
     }
+
     public static void main(String[] args) {
 
         UML_Editor mainWindow = new UML_Editor();
@@ -47,7 +48,7 @@ public class UML_Editor extends JFrame {
 //        demo.getContentPane().add(BorderLayout.SOUTH, button);
 //        demo.getContentPane().add(BorderLayout.NORTH , label);
 //        demo.getContentPane().add(BorderLayout.CENTER, textarea);
-//
 //        demo.setVisible(true);
+
     }
 }
