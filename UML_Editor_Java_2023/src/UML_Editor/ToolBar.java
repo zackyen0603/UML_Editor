@@ -16,7 +16,8 @@ import javax.swing.JToolBar;
 //import UMLeditor_mode.createObjMode;
 //import UMLeditor_mode.selectMode;
 
-public class ToolBar {
+@SuppressWarnings("serial")
+public class ToolBar  extends  JToolBar{
     private int ToolNum = 6;
     private Color myColor = new Color(50, 171, 175);
     private JButton holdBtn = null;
@@ -24,8 +25,8 @@ public class ToolBar {
 
     public ToolBar() {
         canvas = Canvas.getInstance();   // Canvas is singleton
-//        setLayout(new GridLayout(ToolNum, 1, 2, 2));
-//        this.setBackground(new Color(83, 85, 87));
+        setLayout(new GridLayout(ToolNum, 1, 2, 2));
+        setBackground(new Color(83, 85, 87));
 //
 //        ImageIcon selectIcon = new ImageIcon("img/select.png");
 //        ToolBtn selectBtn = new ToolBtn("select", selectIcon, new selectMode());

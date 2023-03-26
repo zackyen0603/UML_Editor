@@ -6,36 +6,35 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 public class MenuBar extends JMenuBar{
-    private JMenu file, edit;
-    private JMenuItem i1, i2, i3, i4, i5;
+    private Canvas canvas;
     public MenuBar(){
-//        JFrame f= new JFrame("Menu and MenuItem Example");
-        JMenuBar menuBar=new JMenuBar();
-        file=new JMenu("File");
-        edit=new JMenu("Edit");
-        i1=new JMenuItem("Item 1");
-        i2=new JMenuItem("Item 2");
-        i3=new JMenuItem("Item 3");
-        i4=new JMenuItem("Item 4");
-        i5=new JMenuItem("Item 5");
-        file.add(i1); edit.add(i2);
-        menuBar.add(file); menuBar.add(edit);
-//        menu.add(i1); menu.add(i2); menu.add(i3);
-//        submenu.add(i4); submenu.add(i5);
-//        menu.add(submenu);
-//        menuBar.add(menu);
-//        f.setJMenuBar(menuBar);
-//        f.setSize(400,500);
-//        f.setLayout(null);
-//        f.setVisible(true);
-        return;
+        canvas = canvas.getInstance();   // Canvas is singleton
+
+        JMenu menu;
+        JMenuItem menuItem;
+
+        /* --- File menu --- */
+        menu = new JMenu("File");
+        add(menu);
+
+        /* --- Edit menu --- */
+        menu = new JMenu("Edit");
+        add(menu);
+
+        menuItem = new JMenuItem("Change object name");
+        menu.add(menuItem);
+//        menuItem.addActionListener(new ChangeNameListener());
+
+        menuItem = new JMenuItem("Group");
+        menu.add(menuItem);
+//        menuItem.addActionListener(new GroupObjectListener());
+
+        menuItem = new JMenuItem("Ungroup");
+        menu.add(menuItem);
+//        menuItem.addActionListener(new UngroupObjectListener());
     }
-    public static void main(String args[]) {
-        MenuBar test = new MenuBar();
-
-    }
 
 
 
 
-    }
+}
