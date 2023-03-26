@@ -7,7 +7,7 @@
 import java.awt.*;
 import javax.swing.*;
 
-public class Main {
+public class UML_Editor {
     public static void main(String[] args) {
         JFrame demo = new JFrame();
         demo.setSize(400, 300);
