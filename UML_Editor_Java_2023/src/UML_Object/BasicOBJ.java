@@ -1,7 +1,8 @@
-package UML_Shape;
+package UML_Object;
 
 public abstract class BasicOBJ {
     protected int x1 ,y1 ,x2 , y2 ;
+    protected int depth ;
     public boolean isGrouped = false ;
 
     public int getX1() {
@@ -19,8 +20,8 @@ public abstract class BasicOBJ {
 
     public abstract void draw();
     public void move(int x , int y){
-        x2 = x1 - x ;
-        y2 = y1 - y ;
+        x2 = x2 + x1 - x ;
+        y2 = y2 + y1 - y ;
         x1 = x ; y1 = y ;
         return ;
     };
