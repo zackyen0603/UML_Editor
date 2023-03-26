@@ -3,11 +3,22 @@
 //        System.out.println("Hello world!");
 //    }
 //}
+package UML_Editor;
 
 import java.awt.*;
 import javax.swing.*;
 
-public class UML_Editor {
+public class UML_Editor extends JFrame {
+    private ToolBar toolBar;
+    private Canvas canvas;
+    private  MenuBar MenuBar;
+
+    public UML_Editor(){
+        canvas = Canvas.getInstance();   // Canvas is singleton
+        toolbar = new ToolBar();
+        menubar = new MenuBar();
+
+    }
     public static void main(String[] args) {
         JFrame demo = new JFrame();
         demo.setSize(400, 300);
