@@ -15,7 +15,7 @@ public class UML_Editor extends JFrame {
 
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(menuBar, BorderLayout.NORTH);
-//        getContentPane().add(toolBar, BorderLayout.WEST);
+        getContentPane().add(toolBar, BorderLayout.WEST);
         getContentPane().add(canvas, BorderLayout.CENTER);
 
     }
