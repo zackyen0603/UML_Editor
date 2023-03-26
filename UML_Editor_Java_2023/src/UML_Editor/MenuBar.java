@@ -9,7 +9,7 @@ public class MenuBar extends JMenuBar{
     private JMenu file, edit;
     private JMenuItem i1, i2, i3, i4, i5;
     public MenuBar(){
-        JFrame f= new JFrame("Menu and MenuItem Example");
+//        JFrame f= new JFrame("Menu and MenuItem Example");
         JMenuBar menuBar=new JMenuBar();
         file=new JMenu("File");
         edit=new JMenu("Edit");
@@ -24,10 +24,10 @@ public class MenuBar extends JMenuBar{
 //        submenu.add(i4); submenu.add(i5);
 //        menu.add(submenu);
 //        menuBar.add(menu);
-        f.setJMenuBar(menuBar);
-        f.setSize(400,500);
-        f.setLayout(null);
-        f.setVisible(true);
+//        f.setJMenuBar(menuBar);
+//        f.setSize(400,500);
+//        f.setLayout(null);
+//        f.setVisible(true);
         return;
     }
     public static void main(String args[]) {
