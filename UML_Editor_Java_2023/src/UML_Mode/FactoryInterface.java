@@ -5,14 +5,9 @@ import UML_Object.BasicShape;
 
 import java.awt.Point;
 
-enum ShapeType{
-    ClassShape , UseCaseShape
-}
-enum LineType{
-  AssociationLine,CompositionLine,GeneralizationLine
-}
+
 
 public interface FactoryInterface {
-    BasicShape createShape(ShapeType shapeType,Point p);
-    BasicLine  createLine(LineType lineType,Point p);
+    BasicShape createShape(String shapeType,Point p);
+    BasicLine  createLine(String lineType,Point p);
 }

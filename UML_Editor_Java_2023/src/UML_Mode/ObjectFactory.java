@@ -7,26 +7,18 @@ import java.awt.*;
 public class ObjectFactory implements FactoryInterface{
 
     @Override
-    public BasicShape createShape(ShapeType shapeType, Point p) {
-        switch (shapeType){
-            case ClassShape :
-                return new ShapeClass(p.x,p.y);
-            case UseCaseShape:
-                return new ShapeUseCase(p.x, p.y);
+    public BasicShape createShape(String shapeType, Point p) {
+        if(shapeType.equals("class")){
+            return new ShapeClass(p.x, p.y);
+        }
+        else if (shapeType.equals("usecase")) {
+            return new ShapeUseCase(p.x,p.y) ;
         }
         return null;
     }
 
     @Override
-    public BasicLine createLine(LineType lineType, Point p) {
-        switch (lineType){
-            case AssociationLine :
-                return new LineAssociation(p.x,p.y);
-            case GeneralizationLine:
-                return new LineGeneralization(p.x,p.y);
-            case CompositionLine:
-                return new LineComposition(p.x,p.y);
-        }
+    public BasicLine createLine(String lineType, Point p) {
         return null;
     }
 }

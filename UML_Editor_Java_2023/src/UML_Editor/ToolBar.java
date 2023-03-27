@@ -2,12 +2,15 @@
 
 package UML_Editor;
 
+import UML_Mode.CreateShapeMode;
+import UML_Mode.Mode;
+
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+//import java.awt.event.MouseEvent;
+//import java.awt.event.MouseListener;
 
 import javax.swing.*;
 
@@ -18,11 +21,9 @@ import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class ToolBar  extends  JToolBar{
-    private int ToolNum = 6;
 //    private Color myColor = new Color(50, 171, 175);
 //    private JButton holdBtn = null;
     private Canvas canvas;
-    protected ToolBtn[] bottons = new ToolBtn[6] ;
     private String[] modes= {
             "select",
             "associate",
@@ -32,23 +33,27 @@ public class ToolBar  extends  JToolBar{
             "usecase",
             "black"
     };
+    //最後一個是black物件 [modes.length-1]
+    private int ToolNum = modes.length-1;
+    protected ToolBtn[] bottons = new ToolBtn[ToolNum] ;
 
-    public void setToolBtnIcon(ToolBtn[] toolBtns){
+    private void setToolBtnIcon(ToolBtn[] toolBtns){
         for(int i = 0 ; i<ToolNum; i+=1){
             ImageIcon icon = new ImageIcon("image/"+this.modes[i]+".png");
             toolBtns[i].setIcon(icon);
         }
-    };
+    }
     private void setNewToolBtn(ToolBtn[] toolBtns){
         for(int i = 0 ; i<ToolNum; i+=1){
             ImageIcon icon = new ImageIcon(this.modes[i]);
             toolBtns[i] = new ToolBtn(modes[i]);
+            toolBtns[i].ToolMode = new CreateShapeMode(modes[i]);
             add(toolBtns[i]);
         }
-    };
+    }
 
     public ToolBar() {
-        canvas = canvas.getInstance();   // Canvas is singleton
+        canvas = Canvas.getInstance();   // Canvas is singleton
         setLayout(new GridLayout(ToolNum, 2, 10, 10));
 //        setLayout(new FlowLayout(FlowLayout.RIGHT)));
         setBackground(Color.darkGray);
@@ -63,10 +68,10 @@ public class ToolBar  extends  JToolBar{
 
     private class ToolBtn extends JButton/* implements MouseListener*/ {
 
-//        Mode ToolMode;
+        Mode ToolMode;
         String toolName ;
         public ToolBtn(String ToolName/* Mode ToolMode*/) {
-            super(ToolName);
+//            super(ToolName);
 //            this.ToolMode = ToolMode;
             this.toolName = ToolName;
             setToolTipText(ToolName);
@@ -75,24 +80,20 @@ public class ToolBar  extends  JToolBar{
             setBackground(new Color(0, 0, 0));
             setBorderPainted(false);
 //            setRolloverEnabled(true);
-            addActionListener(new toolListener());
+            addActionListener(new toolBtnListener());
 //            addMouseListener(this);
         }
-        class toolListener implements ActionListener {
+        class toolBtnListener implements ActionListener {
             public void actionPerformed(ActionEvent e) {
-//                if(holdBtn != null)
-//                    holdBtn.setBackground(Color.blue);
-//                holdBtn = (JButton) e.getSource();
-//                holdBtn.setBackground(myColor);
-                /*練習加的*/
                 //改變canvas上的模式
-                canvas.modeNow = toolName;
+//                canvas.modeNow.strModeType = toolName;
+                canvas.setModeNow(toolName);
                 setBorderPainted(true);
                 //重新繪製按鈕
                 setToolBtnIcon(bottons);
                 setIcon(new ImageIcon("image/black.png"));
                 //Terminal檢查模式
-                System.out.println("Mode \'"+canvas.modeNow+"\' Now");
+                System.out.println("Mode \""+canvas.modeNow+"\" Now");
 
 
 

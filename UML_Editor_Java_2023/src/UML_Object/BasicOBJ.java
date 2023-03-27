@@ -1,5 +1,7 @@
 package UML_Object;
 
+import java.awt.*;
+
 public abstract class BasicOBJ {
     protected int x1 ,y1 ,x2 , y2 ;
     protected int depth ;
@@ -18,7 +20,7 @@ public abstract class BasicOBJ {
         return y2;
     }
 
-    public abstract void draw();
+    public abstract void draw(Graphics g);
     public void move(int x , int y){
         x2 = x2 + x1 - x ;
         y2 = y2 + y1 - y ;
