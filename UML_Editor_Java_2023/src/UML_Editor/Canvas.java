@@ -114,10 +114,9 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         System.out.println("test:"+modeNow.strModeType);
         if(modeNow.strModeType.equals("select")) {
 
-            System.out.println("RERERERERERERERERERERE");
             draggingPaint(g, new Color(30, 255, 255, 60), 1);
             if (!dragLock) {
-                draggingPaint(g, new Color(35, 37, 37), 0);
+                draggingPaint(g, new Color(35, 37, 37), 1);
                 reverseDragLock();
             }
         }
