@@ -19,8 +19,8 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class ToolBar  extends  JToolBar{
     private int ToolNum = 6;
-    private Color myColor = new Color(50, 171, 175);
-    private JButton holdBtn = null;
+//    private Color myColor = new Color(50, 171, 175);
+//    private JButton holdBtn = null;
     private Canvas canvas;
     protected ToolBtn[] bottons = new ToolBtn[6] ;
     private String[] modes= {
@@ -61,7 +61,7 @@ public class ToolBar  extends  JToolBar{
     }
 
 
-    private class ToolBtn extends JButton implements MouseListener {
+    private class ToolBtn extends JButton/* implements MouseListener*/ {
 
 //        Mode ToolMode;
         String toolName ;
@@ -75,68 +75,81 @@ public class ToolBar  extends  JToolBar{
             setBackground(new Color(0, 0, 0));
             setBorderPainted(false);
 //            setRolloverEnabled(true);
-//            addActionListener(new toolListener());
-            addMouseListener(this);
+            addActionListener(new toolListener());
+//            addMouseListener(this);
         }
-//        class toolListener implements ActionListener {
-//            public void actionPerformed(ActionEvent e) {
+        class toolListener implements ActionListener {
+            public void actionPerformed(ActionEvent e) {
 //                if(holdBtn != null)
 //                    holdBtn.setBackground(Color.blue);
 //                holdBtn = (JButton) e.getSource();
 //                holdBtn.setBackground(myColor);
-////                canvas.currentMode = ToolMode;
-////                canvas.setCurrentMode();
-////                canvas.reset();
-////                canvas.repaint();
-//            }
-//        }
-
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            canvas.modeNow = this.toolName;
-            this.setBorderPainted(true);
-            this.setBackground(Color.red);
-            setToolBtnIcon(bottons);
-            this.setIcon(new ImageIcon("image/black.png"));
-            System.out.println("Clicked");
-//            this.setIcon();
-        };
-
-        @Override
-        /**
-         * Invoked when the mouse button has been clicked (pressed
-         * and released) on a component.
-         * @param e the event to be processed
-         */
-        public void mousePressed(MouseEvent e){
-            System.out.println("Pressed");
+                /*練習加的*/
+                //改變canvas上的模式
+                canvas.modeNow = toolName;
+                setBorderPainted(true);
+                //重新繪製按鈕
+                setToolBtnIcon(bottons);
+                setIcon(new ImageIcon("image/black.png"));
+                //Terminal檢查模式
+                System.out.println("Mode \'"+canvas.modeNow+"\' Now");
 
 
-        };
 
-        @Override
-        public void mouseReleased(MouseEvent e){
+//                canvas.currentMode = ToolMode;
+//                canvas.setCurrentMode();
+//                canvas.reset();
+//                canvas.repaint();
+            }
+        }
 
-            System.out.println("Release");
-
-
-        };
-    int cnt = 0 ;
-        @Override
-        public void mouseEntered(MouseEvent e){
-
-//            System.out.println("enter"+cnt);
-            cnt ++ ;
-
-
-        };
-
-        @Override
-        public void mouseExited(MouseEvent e){
-
-//            System.out.println("exit");
-            cnt=0;
-        };
+//        @Override
+//        public void mouseClicked(MouseEvent e) {
+//            canvas.modeNow = this.toolName;
+//            this.setBorderPainted(true);
+//            setToolBtnIcon(bottons);
+//            this.setIcon(new ImageIcon("image/black.png"));
+//            System.out.println("Clicked");
+//
+//            this.setBackground(Color.black);
+////            this.setIcon();
+//        };
+//
+//        @Override
+//        /**
+//         * Invoked when the mouse button has been clicked (pressed
+//         * and released) on a component.
+//         * @param e the event to be processed
+//         */
+//        public void mousePressed(MouseEvent e){
+//            System.out.println("Pressed");
+//
+//
+//        };
+//
+//        @Override
+//        public void mouseReleased(MouseEvent e){
+//
+//            System.out.println("Release");
+//
+//
+//        };
+//    int cnt = 0 ;
+//        @Override
+//        public void mouseEntered(MouseEvent e){
+//
+////            System.out.println("enter"+cnt);
+//            cnt ++ ;
+//
+//
+//        };
+//
+//        @Override
+//        public void mouseExited(MouseEvent e){
+//
+////            System.out.println("exit");
+//            cnt=0;
+//        };
     }
 
 }
