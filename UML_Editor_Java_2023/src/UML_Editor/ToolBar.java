@@ -5,8 +5,7 @@ package UML_Editor;
 import UML_Mode.CreateShapeMode;
 import UML_Mode.Mode;
 
-import java.awt.Color;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 //import java.awt.event.MouseEvent;
@@ -24,6 +23,7 @@ public class ToolBar  extends  JToolBar{
 //    private Color myColor = new Color(50, 171, 175);
 //    private JButton holdBtn = null;
     private Canvas canvas;
+    private int iconSize = 80 ;
     private String[] modes= {
             "select",
             "associate",
@@ -40,7 +40,9 @@ public class ToolBar  extends  JToolBar{
     private void setToolBtnIcon(ToolBtn[] toolBtns){
         for(int i = 0 ; i<ToolNum; i+=1){
             ImageIcon icon = new ImageIcon("image/"+this.modes[i]+".png");
-            toolBtns[i].setIcon(icon);
+            Image img = icon.getImage();
+            Image newimag = img.getScaledInstance(iconSize, iconSize,  java.awt.Image.SCALE_SMOOTH ) ;
+            toolBtns[i].setIcon(new ImageIcon(newimag));
         }
     }
     private void setNewToolBtn(ToolBtn[] toolBtns){
@@ -54,7 +56,7 @@ public class ToolBar  extends  JToolBar{
 
     public ToolBar() {
         canvas = Canvas.getInstance();   // Canvas is singleton
-        setLayout(new GridLayout(ToolNum, 2, 10, 10));
+        setLayout(new GridLayout(ToolNum, 2, 1, 1));
 //        setLayout(new FlowLayout(FlowLayout.RIGHT)));
         setBackground(Color.darkGray);
 
@@ -76,10 +78,11 @@ public class ToolBar  extends  JToolBar{
             this.toolName = ToolName;
             setToolTipText(ToolName);
 //            setIcon(icon);
-            setFocusable(true);
-            setBackground(new Color(0, 0, 0));
-            setBorderPainted(false);
-//            setRolloverEnabled(true);
+            setFocusable(false);
+//            setBackground(new Color(0, 0, 0));
+//            setBorderPainted(true);
+            this.setContentAreaFilled(false);
+            setRolloverEnabled(true);
             addActionListener(new toolBtnListener());
 //            addMouseListener(this);
         }
@@ -91,16 +94,21 @@ public class ToolBar  extends  JToolBar{
                 setBorderPainted(true);
                 //重新繪製按鈕
                 setToolBtnIcon(bottons);
-                setIcon(new ImageIcon("image/black.png"));
+
+                ImageIcon icon = new ImageIcon("image/black.png");
+                Image img = icon.getImage();
+                Image newimag = img.getScaledInstance(iconSize, iconSize,  java.awt.Image.SCALE_SMOOTH ) ;
+                setIcon(new ImageIcon(newimag));
+//                setIcon(new ImageIcon("image/black.png"));
                 //Terminal檢查模式
                 System.out.println("Mode \""+canvas.modeNow+"\" Now");
 
 
 
-//                canvas.currentMode = ToolMode;
+//                canvas.mod = ToolMode;
 //                canvas.setCurrentMode();
 //                canvas.reset();
-//                canvas.repaint();
+                canvas.repaint();
             }
         }
 

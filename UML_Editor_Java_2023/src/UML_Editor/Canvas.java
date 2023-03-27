@@ -31,6 +31,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         // Exists only to defeat instantiation.
 //        this.setBackground(Color.white);
         System.out.println("Canvas!!!");
+        repaint();
 //        addMouseListener(this);
 //        addMouseMotionListener(this);
     }
@@ -92,15 +93,14 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         else g.clearRect( originX, originY , w, h );
 
     }
+    //處理滑鼠拖曳圖形界面
    public void reverseDragLock(){
         this.dragLock = ! dragLock ;
    }
 
     @Override
     public void paint(Graphics g) {
-//        super.paint(g);
-
-
+        super.paint(g);
         /* set canvas area */
         Dimension dim = getSize();
         /*設定背景*/
@@ -111,9 +111,8 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         Graphics2D g2 = (Graphics2D) g;
         g2.setStroke(new BasicStroke(1));
 
-        System.out.println("test:"+modeNow.strModeType);
-        if(modeNow.strModeType.equals("select")) {
-
+//        System.out.println("test:"+modeNow.strModeType);
+        if(modeNow!=null && modeNow.strModeType.equals("select")) {
             draggingPaint(g, new Color(30, 255, 255, 60), 1);
             if (!dragLock) {
                 draggingPaint(g, new Color(35, 37, 37), 1);
