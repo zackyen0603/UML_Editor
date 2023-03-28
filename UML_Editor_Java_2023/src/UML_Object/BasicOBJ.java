@@ -3,9 +3,10 @@ package UML_Object;
 import java.awt.*;
 
 public abstract class BasicOBJ {
-    protected int x1 ,y1 ,x2 , y2 ;
+    public int x1 ,y1 ,x2 , y2 ;
     protected int depth ;
     public boolean isGrouped = false ;
+    public boolean isSelected = false ;
 
     public int getX1() {
         return x1;

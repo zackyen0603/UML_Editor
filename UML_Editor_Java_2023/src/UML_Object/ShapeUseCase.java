@@ -11,6 +11,14 @@ public class ShapeUseCase extends BasicShape{
 
     @Override
     public void draw(Graphics g) {
+        //在畫布中有無被選中
+        if(isSelected) {
+            g.setColor(Color.blue);
+            draw4Ports(g,10);
+        }
+        else{
+            g.setColor(Color.white);
+        }
         g.drawOval(x1, y1, width, height);
 
         // find the width for the specified string.

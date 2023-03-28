@@ -2,8 +2,6 @@ package UML_Editor;
 
 import UML_Mode.*;
 import UML_Object.BasicShape;
-import UML_Object.ShapeClass;
-import UML_Object.ShapeUseCase;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,11 +14,12 @@ import java.util.List;
 
 //enum ModeNow{Select,Associate,Generalize,Compose,Class,UseCase}
 public class Canvas extends JPanel implements MouseListener, MouseMotionListener {
-    public Mode modeNow = null ;
+    public BaseMode modeNow = null ;
     public List<BasicShape> shapes = new ArrayList<BasicShape>() ;
     private static Canvas instance = null; // for singleton
 
     private EventListener listener = null;
+
 
     //dragLock用來處理拖曳更新
     private boolean dragLock = true ;
@@ -83,13 +82,18 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
     }
 //    1:fill/0:clear
     public void draggingPaint(Graphics g,Color color,int option){
-        System.out.println("Entered!!!!!!!");
+//        System.out.println("Entered!!!!!!!");
         g.setColor(color);
         int originX = Math.min(mouse_start_x,move_x);
         int originY = Math.min(mouse_start_y,move_y);
         int h = Math.abs(mouse_start_y-move_y) ;
         int w = Math.abs(mouse_start_x-move_x) ;
-        if(option!=0) g.fillRect( originX, originY , w, h );
+        if(option!=0) {
+            g.fillRect(originX, originY, w, h);
+//            g.setColor(Color.WHITE);
+//            g.drawRect(originX+1, originY+1, w-2, h-2);
+            g.setColor(color);
+        }
         else g.clearRect( originX, originY , w, h );
 
     }
@@ -111,21 +115,21 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         Graphics2D g2 = (Graphics2D) g;
         g2.setStroke(new BasicStroke(1));
 
-//        System.out.println("test:"+modeNow.strModeType);
+        //選擇模式的操作
         if(modeNow!=null && modeNow.strModeType.equals("select")) {
-            draggingPaint(g, new Color(30, 255, 255, 60), 1);
+            draggingPaint(g, new Color(80,180 , 255, 150), 1);
             if (!dragLock) {
                 draggingPaint(g, new Color(35, 37, 37), 1);
                 reverseDragLock();
             }
         }
-        System.out.println("Shape個數："+shapes.size());
+//        System.out.println("Shape個數："+shapes.size());
         //對每個shape做事
         if(shapes!=null){
             for(BasicShape s:shapes){
                 if(s==null) continue;
                 s.draw(g);
-                System.out.println(s.objName+"("+s.getX1()+","+s.getY1()+")");
+//                System.out.println(s.objName+"("+s.getX1()+","+s.getY1()+")");
             }
         }
     }

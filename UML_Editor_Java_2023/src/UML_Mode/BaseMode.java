@@ -7,11 +7,11 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 
-public abstract class Mode implements MouseListener, MouseMotionListener {
+public abstract class BaseMode implements MouseListener, MouseMotionListener {
     protected Canvas canvas = Canvas.getInstance();   // Canvas is singleton
     public String strModeType ;
 
-    public Mode(String str){
+    public BaseMode(String str){
         this.strModeType = str ;
     }
 

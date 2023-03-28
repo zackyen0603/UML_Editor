@@ -9,9 +9,18 @@ public class ShapeClass extends BasicShape{
         this.objName = "Class Name" ;
 
     }
+
+
     @Override
     public void draw(Graphics g){
-        g.setColor(Color.white);
+        //在畫布中有無被選中
+        if(isSelected) {
+            g.setColor(Color.blue);
+            draw4Ports(g,10);
+        }
+        else{
+            g.setColor(Color.white);
+        }
         g.drawRect(x1, y1, width, height);
 //        System.out.println("W/D:"+width+"/"+height);
 

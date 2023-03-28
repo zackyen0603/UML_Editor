@@ -3,7 +3,7 @@
 package UML_Editor;
 
 import UML_Mode.CreateShapeMode;
-import UML_Mode.Mode;
+import UML_Mode.BaseMode;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -70,7 +70,7 @@ public class ToolBar  extends  JToolBar{
 
     private class ToolBtn extends JButton/* implements MouseListener*/ {
 
-        Mode ToolMode;
+        BaseMode ToolMode;
         String toolName ;
         public ToolBtn(String ToolName/* Mode ToolMode*/) {
 //            super(ToolName);
