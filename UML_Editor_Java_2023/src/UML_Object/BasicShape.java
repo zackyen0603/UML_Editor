@@ -8,6 +8,8 @@ public abstract class BasicShape extends BasicOBJ{
     public int width ,height ;
     public String objName ;
 
+    Port[] ports = null ;
+
     public BasicShape(int x , int y ,int width, int height){
         this.x1 = x ;
         this.y1 = y ;
@@ -16,8 +18,9 @@ public abstract class BasicShape extends BasicOBJ{
         this.x2 = this.x1 + this.width;
         this.y2 = this.y1 + this.height;
     };
-    protected void draw4Ports(Graphics g , int size){
-        int squareSize = size ;
+
+    protected void initPorts(){
+        int squareSize = 10 ;
         int middle_x = (x1 + x2) / 2 ;
         int middle_y = (y1 + y2) / 2 ;
 
@@ -26,16 +29,32 @@ public abstract class BasicShape extends BasicOBJ{
         Port westPort   = new Port(x1,middle_y,squareSize,squareSize);
         Port eastPort   = new Port(x2,middle_y,squareSize,squareSize);
         Port southPort  = new Port(middle_x,y2,squareSize,squareSize);
-
         northPort.setDrawPoint(-squareSize/2,-squareSize);
         westPort.setDrawPoint(-squareSize,-squareSize/2);
         eastPort.setDrawPoint(0,-squareSize/2);
         southPort.setDrawPoint(-squareSize/2,0);
+        ports = new Port[]{northPort,westPort,eastPort,southPort} ;
+    }
 
-        northPort.draw(g);
-        westPort.draw(g);
-        eastPort.draw(g);
-        southPort.draw(g);
+    protected void draw4Ports(Graphics g){
+//        int squareSize = size ;
+//        int middle_x = (x1 + x2) / 2 ;
+//        int middle_y = (y1 + y2) / 2 ;
+//
+//        Port northPort  = new Port(middle_x,y1,squareSize,squareSize);
+//        Port westPort   = new Port(x1,middle_y,squareSize,squareSize);
+//        Port eastPort   = new Port(x2,middle_y,squareSize,squareSize);
+//        Port southPort  = new Port(middle_x,y2,squareSize,squareSize);
+//
+//
+//        northPort.draw(g);
+//        westPort.draw(g);
+//        eastPort.draw(g);
+//        southPort.draw(g);
+        for(Port p:ports){
+            p.draw(g);
+        }
+//        return new Port[]{northPort,westPort,eastPort,southPort} ;
     }
 
     //回傳0代表此點不在範圍中，1:北,2:西,3:東,4:南

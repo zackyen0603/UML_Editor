@@ -6,6 +6,7 @@ public class ShapeUseCase extends BasicShape{
     public ShapeUseCase(int x, int y){
         super(x,y,150,100);
         objName = "Use Case Name" ;
+        initPorts();
 
     }
 
@@ -14,7 +15,7 @@ public class ShapeUseCase extends BasicShape{
         //在畫布中有無被選中
         if(isSelected) {
             g.setColor(Color.blue);
-            draw4Ports(g,10);
+            draw4Ports(g);
         }
         else{
             g.setColor(Color.white);

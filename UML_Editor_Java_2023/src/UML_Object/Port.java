@@ -8,6 +8,7 @@ public class Port extends BasicShape{
 
     public Port(int x, int y, int width, int height) {
         super(x, y, width, height);
+//        super.initPorts();
     }
 
     public void setDrawPoint(int x, int y){
@@ -21,6 +22,5 @@ public class Port extends BasicShape{
         g.setColor(Color.WHITE);
         g.fillRect(draw_x,draw_y,width,height);
         g.setColor(Color.BLUE);
-
     }
 }

@@ -7,6 +7,7 @@ public class ShapeClass extends BasicShape{
     public ShapeClass(int x, int y){
         super(x,y,100,150);
         this.objName = "Class Name" ;
+        super.initPorts();
 
     }
 
@@ -16,7 +17,7 @@ public class ShapeClass extends BasicShape{
         //在畫布中有無被選中
         if(isSelected) {
             g.setColor(Color.blue);
-            draw4Ports(g,10);
+            draw4Ports(g);
         }
         else{
             g.setColor(Color.white);
