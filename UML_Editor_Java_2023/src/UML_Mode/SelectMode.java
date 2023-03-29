@@ -5,15 +5,16 @@ import UML_Object.BasicShape;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SelectMode extends BaseMode {
 
     private int mouse_start_x , mouse_start_y ;
     private int mouse_end_x , mouse_end_y ;
     private boolean hasSelected = false ;
-
     private BasicShape movingNow = null ;
-
+    public List<BasicShape> selectedItem = new ArrayList<BasicShape>();
     public SelectMode(String str) {
         super(str);
     }
@@ -39,7 +40,7 @@ public class SelectMode extends BaseMode {
 
     @Override
     public void mouseDragged(MouseEvent e) {
-
+        selectedItem.clear();
         //單選or複選選擇
         int selectedCount = 0 ;
         for (BasicShape selectedShape : canvas.shapes) {
@@ -97,13 +98,13 @@ public class SelectMode extends BaseMode {
         this.mouse_end_x   = e.getX() ;
         this.mouse_end_y   = e.getY() ;
 
+        canvas.singleSelectedShape = null ;
         for(BasicShape selectedShape:canvas.shapes){
             selectedShape.isSelected = false ;
             if(selectedShape.pointInside(new Point(e.getX(),e.getY()))){
                 this.movingNow = selectedShape ;
                 hasSelected = true ;
             }
-
         }
         if(movingNow!=null){
             movingNow.isSelected = true ;
@@ -119,6 +120,18 @@ public class SelectMode extends BaseMode {
         canvas.reverseDragLock() ;
         canvas.repaint();
         hasSelected = false ;
+
+        for (BasicShape selectedShape : canvas.shapes) {
+            if(selectedShape.isSelected){
+                selectedItem.add(selectedShape);
+            }
+        }
+        if(selectedItem.size()==1){
+
+            canvas.singleSelectedShape = selectedItem.get(0) ;
+        }
+
+        System.out.println("RTETETETETET:"+selectedItem.size());
     }
 
 

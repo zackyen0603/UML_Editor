@@ -18,7 +18,21 @@ public class ObjectFactory implements FactoryInterface{
     }
 
     @Override
-    public BasicLine createLine(String lineType, Point p) {
+    public BasicLine createLine(String lineType, Port port1,Port port2) {
+        System.out.println(lineType);
+        if(lineType.equals("associate")){
+            return new LineAssociation(port1,port2);
+        }
+        else if (lineType.equals("composite")) {
+            return new LineComposition(port1,port2);
+
+        }
+        else if (lineType.equals("general")) {
+            return new LineGeneralization(port1,port2);
+
+        }
+
+
         return null;
     }
 }

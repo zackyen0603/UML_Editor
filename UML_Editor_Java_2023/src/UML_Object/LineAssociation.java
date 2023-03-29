@@ -6,8 +6,8 @@ public class LineAssociation extends BasicLine{
     public LineAssociation(){
 
     };
-    public LineAssociation(int x1 ,int y1, int x2 , int y2){
-        super(x1, y1, x2, y2);
+    public LineAssociation(Port p1 , Port p2){
+        super(p1,p2);
     };
 
     @Override

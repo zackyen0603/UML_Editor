@@ -17,11 +17,14 @@ import java.util.List;
 public class Canvas extends JPanel implements MouseListener, MouseMotionListener {
     public BaseMode modeNow = null ;
     public List<BasicShape> shapes = new ArrayList<BasicShape>() ;
+    public List<BasicLine> lines = new ArrayList<BasicLine>() ;
     private static Canvas instance = null; // for singleton
 
     private EventListener listener = null;
 
     public BasicLine tempLine = null ;
+
+    public BasicShape singleSelectedShape = null ;
 
 
     //dragLock用來處理拖曳更新
@@ -73,6 +76,12 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         listener = this.modeNow;
         addMouseListener((MouseListener) listener);
         addMouseMotionListener((MouseMotionListener) listener);
+    }
+
+    public void changeShapeName(String str){
+        System.out.println(str);
+        this.singleSelectedShape.objName = str ;
+        this.repaint();
     }
 
 
@@ -148,6 +157,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         }
 
         if(tempLine!=null){
+            System.out.println("KKKKKKKKTYHDFGHDFGHFGHJFGHJFGH");
             tempLine.show(g);
         }
 //        //畫線模式的操作
@@ -169,11 +179,15 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 
 //        System.out.println("Shape個數："+shapes.size());
         //對每個shape做事
-        if(shapes!=null){
+        if(shapes.size()!=0){
             for(BasicShape s:shapes){
-                if(s==null) continue;
                 s.draw(g);
 //                System.out.println(s.objName+"("+s.getX1()+","+s.getY1()+")");
+            }
+        }
+        if(lines.size()!=0){
+            for (BasicLine line:lines){
+                line.show(g);
             }
         }
     }
