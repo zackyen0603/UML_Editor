@@ -15,7 +15,7 @@ import java.util.EventListener;
 import java.util.List;
 
 //enum ModeNow{Select,Associate,Generalize,Compose,Class,UseCase}
-public class Canvas extends JPanel implements MouseListener, MouseMotionListener {
+public class Canvas extends JPanel {
     public BaseMode modeNow = null ;
     public List<BasicShape> shapes = new ArrayList<BasicShape>() ;
     public List<BasicLine> lines = new ArrayList<BasicLine>() ;
@@ -123,15 +123,12 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         int w = Math.abs(mouse_start_x-move_x) ;
         if(option!=0) {
             g.fillRect(originX, originY, w, h);
-//            g.setColor(Color.WHITE);
-//            g.drawRect(originX+1, originY+1, w-2, h-2);
             g.setColor(color);
         }
         else g.clearRect( originX, originY , w, h );
     }
 
     public void linkingPainting(int x1,int y1,int x2,int y2,Graphics g){
-//        Graphics g = this.getGraphics();
         g.setColor(Color.white);
         g.drawLine(x1,y1,x2,y2);
     }
@@ -176,34 +173,13 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
                 reverseDragLock();
             }
         }
-
         if(tempLine!=null){
-            System.out.println("KKKKKKKKTYHDFGHDFGHFGHJFGHJFGH");
             tempLine.show(g);
         }
-//        //畫線模式的操作
-//        if(modeNow!=null && (   modeNow.strModeType.equals("associate")||
-//                                modeNow.strModeType.equals("composite")||
-//                                modeNow.strModeType.equals("general"))
-//        ) {
-//            System.out.println("FFFFFFFFFF");
-//            g.setColor(Color.white);
-//            linkingPainting(mouse_start_x,mouse_start_y,move_x,move_y,g);
-//            if (!dragLock) {
-//                g.setColor(Color.white);
-//                linkingPainting(mouse_start_x,mouse_start_y,move_x,move_y,g);
-//                reverseDragLock();
-//            }
-//        }
-
-
-
-//        System.out.println("Shape個數："+shapes.size());
         //對每個shape做事
         if(shapes.size()!=0){
             for(BasicShape s:shapes){
                 s.draw(g);
-//                System.out.println(s.objName+"("+s.getX1()+","+s.getY1()+")");
             }
         }
         if(lines.size()!=0){
@@ -212,97 +188,4 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
             }
         }
     }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-//        Graphics g =getGraphics();
-//        g.setColor(Color.red);
-//        g.fillOval(e.getX(),e.getY(),2,2);
-        //繪製所有圖形
-        System.out.println("ClickedPoint:("+e.getX()+','+e.getY()+")");
-//        this.addShape(new ShapeUseCase(e.getX(),e.getY()));
-//        this.repaint();
-
-        this.mouse_start_x = e.getX() ;
-        this.mouse_start_y = e.getY() ;
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-//        Graphics g =getGraphics();
-//        g.setColor(Color.red);
-//        g.fillOval(e.getX(),e.getY(),2,2);
-
-//        System.out.println("PointDragging:("+e.getX()+','+e.getY()+")");
-        this.mouse_start_x = e.getX() ;
-        this.mouse_start_y = e.getY() ;
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-        dragLock = !dragLock ;
-        Graphics g =getGraphics();
-//        g.clearRect();
-
-        int originX = Math.min(mouse_start_x,move_x);
-        int originY = Math.min(mouse_start_y,move_y);
-        int h = Math.abs(mouse_start_y-move_y) ;
-        int w = Math.abs(mouse_start_x-move_x) ;
-//        g.fillOval(e.getX(),e.getY(),2,2);
-//        System.out.println("PointEXIT:("+e.getX()+','+e.getY()+")");
-        //繪製所有圖形
-        System.out.println("EEEEEEPoint:("+e.getX()+','+e.getY()+")-> "+this.modeNow.strModeType);
-        ObjectFactory factory = new ObjectFactory();
-        if(this.modeNow.strModeType.equals("class")||
-           this.modeNow.strModeType.equals("usecase")){
-            this.addShape(factory.createShape(this.modeNow.strModeType,e.getPoint()));
-        }
-
-
-        this.repaint();
-
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseDragged(MouseEvent e) {
-        Graphics g =getGraphics();
-        g.setColor(Color.red);
-//        g.fillOval(e.getX(),e.getY(),2,2);
-//        System.out.println("Dragging+++PointEXIT:()");
-        move_x = e.getX() ;
-        move_y = e.getY() ;
-//        draggingPaint(g,e.getPoint());
-//        this.repaint();
-        if (this.modeNow.strModeType.equals("select")) {
-            System.out.println("eeeeeee");
-            repaint();
-        }
-//        repaint();
-
-
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent e) {
-
-
-//        System.out.println("DragFFFFging+++PointEXIT:()");
-
-    }
-
-
-
-
 }

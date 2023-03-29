@@ -22,7 +22,6 @@ public class ShapeUseCase extends BasicShape{
         }
         g.drawOval(x1, y1, width, height);
 
-        // find the width for the specified string.
         int stringWidth = g.getFontMetrics(font).stringWidth(objName);
         double empty = (Math.abs(x1-x2) - stringWidth)/2;
         g.setFont(font);
