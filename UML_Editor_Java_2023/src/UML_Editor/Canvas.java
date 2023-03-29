@@ -3,6 +3,7 @@ package UML_Editor;
 import UML_Mode.*;
 import UML_Object.BasicLine;
 import UML_Object.BasicShape;
+import UML_Object.Group;
 
 import javax.swing.*;
 import java.awt.*;
@@ -56,6 +57,26 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         else {
             System.out.println(shape.objName+"cannot be add to ShapeList");
         }
+    }
+
+    public void addGroup(){
+        List<BasicShape> ipt = new ArrayList<>();
+        for(BasicShape shape:shapes){
+            if(shape.isSelected){
+                ipt.add(shape);
+                shape.isGrouped += 1 ;
+            }
+        }
+        shapes.add(new Group(ipt));
+        this.repaint();
+    }
+    public void removeGroup(){
+        for(BasicShape shape:shapes){
+            if(shape.isSelected){
+                shapes.remove(shape);
+            }
+        }
+
     }
 
     public void setModeNow(String modeNow){

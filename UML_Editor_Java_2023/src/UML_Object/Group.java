@@ -25,13 +25,28 @@ public class Group extends BasicShape{
         this.width = x2 - x1 ;
         this.height = y2 - y1 ;
         this.objName = "Group" ;
+        initPorts();
 
 
     }
 
+    public void move(int dx , int dy){
+        x1 += dx ; y1 += dy ;
+        x2 += dx ; y2 += dy ;
+        for(Port p :ports){
+            p.move(dx,dy);
+        }
+        for(BasicShape shape:shapeList){
+            shape.move(dx, dy);
+        }
+        updateDrawPoint(ports,10);
+    };
 
     @Override
     public void draw(Graphics g) {
-
+        if(isSelected) {
+            g.drawRect(x1, y1, width, height);
+            draw4Ports(g);
+        }
     }
 }

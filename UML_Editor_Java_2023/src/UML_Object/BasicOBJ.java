@@ -5,7 +5,7 @@ import java.awt.*;
 public abstract class BasicOBJ {
     public int x1 ,y1 ,x2 , y2 ;
     public int depth ;
-    public boolean isGrouped = false ;
+    public int isGrouped = 0 ;
     public boolean isSelected = false ;
 
     public int getX1() {

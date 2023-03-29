@@ -56,14 +56,14 @@ public class MenuBar extends JMenuBar{
 
     class GroupObjectListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-
+            canvas.addGroup();
         }
     }
 
 
     class UngroupObjectListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-
+            canvas.removeGroup();
 
         }
     }
