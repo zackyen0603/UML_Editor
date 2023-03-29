@@ -17,6 +17,17 @@ public abstract class BasicShape extends BasicOBJ{
         this.height = height ;
         this.x2 = this.x1 + this.width;
         this.y2 = this.y1 + this.height;
+//        this.initPorts();
+    };
+
+    public void move(int dx , int dy){
+        System.out.println("X/Y:"+dx+"/"+dy);
+        x1 += dx ; y1 += dy ;
+        x2 += dx ; y2 += dy ;
+        for(Port p :ports){
+            p.move(dx,dy);
+        }
+        updateDrawPoint(ports,10);
     };
 
     protected void initPorts(){
@@ -29,44 +40,42 @@ public abstract class BasicShape extends BasicOBJ{
         Port westPort   = new Port(x1,middle_y,squareSize,squareSize);
         Port eastPort   = new Port(x2,middle_y,squareSize,squareSize);
         Port southPort  = new Port(middle_x,y2,squareSize,squareSize);
-        northPort.setDrawPoint(-squareSize/2,-squareSize);
-        westPort.setDrawPoint(-squareSize,-squareSize/2);
-        eastPort.setDrawPoint(0,-squareSize/2);
-        southPort.setDrawPoint(-squareSize/2,0);
         ports = new Port[]{northPort,westPort,eastPort,southPort} ;
+        updateDrawPoint(ports,squareSize);
+    }
+    public void updateDrawPoint(Port[] ports,int squareSize){
+        ports[0].setDrawPoint(-squareSize/2,-squareSize);
+        ports[1].setDrawPoint(-squareSize,-squareSize/2);
+        ports[2].setDrawPoint(0,-squareSize/2);
+        ports[3].setDrawPoint(-squareSize/2,0);
+
     }
 
     protected void draw4Ports(Graphics g){
-//        int squareSize = size ;
-//        int middle_x = (x1 + x2) / 2 ;
-//        int middle_y = (y1 + y2) / 2 ;
-//
-//        Port northPort  = new Port(middle_x,y1,squareSize,squareSize);
-//        Port westPort   = new Port(x1,middle_y,squareSize,squareSize);
-//        Port eastPort   = new Port(x2,middle_y,squareSize,squareSize);
-//        Port southPort  = new Port(middle_x,y2,squareSize,squareSize);
-//
-//
-//        northPort.draw(g);
-//        westPort.draw(g);
-//        eastPort.draw(g);
-//        southPort.draw(g);
         for(Port p:ports){
             p.draw(g);
         }
-//        return new Port[]{northPort,westPort,eastPort,southPort} ;
+    }
+
+    public Port nearestPort(Point p){
+        Port retPort = null ;
+        double nearestDist = Double.MAX_VALUE ;
+        int t = 0 ;
+        for(Port port:ports){
+            if(port.pointDistance(p)<nearestDist){
+                nearestDist = port.pointDistance(p);
+                System.out.println("Select port: "+ t );
+                retPort = port ;
+            }
+            t+=1;
+        }
+        return retPort ;
     }
 
     //回傳0代表此點不在範圍中，1:北,2:西,3:東,4:南
-    public boolean pointInside(BasicShape shape ,Point p){
-        int mid_x = ( shape.x1 + shape.x2 ) / 2 ;
-        int mid_y = ( shape.y1 + shape.y2 ) / 2 ;
-        if( shape.x1<p.x&&shape.x2>p.x&&shape.y1<p.y&&p.y<shape.y2 ){
-            return true ;
-        }
-        else {
-            return false;
-        }
+    public boolean pointInside(Point p){
+        return ( p.x >= this.x1 && p.x <= this.x2  &&
+                 p.y >= this.y1 && p.y <= this.y2  );
     }
 
     @Override

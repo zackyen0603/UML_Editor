@@ -8,12 +8,24 @@ public class Port extends BasicShape{
 
     public Port(int x, int y, int width, int height) {
         super(x, y, width, height);
-//        super.initPorts();
     }
 
     public void setDrawPoint(int x, int y){
         this.draw_x = this.x1 + x ;
         this.draw_y = this.y1 + y ;
+
+    }
+
+
+    public void move(int x , int y){
+        x2 += x ; y2 += y ;
+        x1 += x ; y1 += y ;
+    };
+
+    public double pointDistance(Point p){
+        int xDifferent = Math.abs(x1-p.x) ;
+        int yDifferent = Math.abs(y1-p.y) ;
+        return Math.sqrt(xDifferent*xDifferent+yDifferent*yDifferent) ;
     }
 
     @Override

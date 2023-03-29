@@ -1,6 +1,7 @@
 package UML_Editor;
 
 import UML_Mode.*;
+import UML_Object.BasicLine;
 import UML_Object.BasicShape;
 
 import javax.swing.*;
@@ -19,6 +20,8 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
     private static Canvas instance = null; // for singleton
 
     private EventListener listener = null;
+
+    public BasicLine tempLine = null ;
 
 
     //dragLock用來處理拖曳更新
@@ -95,16 +98,36 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
             g.setColor(color);
         }
         else g.clearRect( originX, originY , w, h );
-
     }
+
+    public void linkingPainting(int x1,int y1,int x2,int y2,Graphics g){
+//        Graphics g = this.getGraphics();
+        g.setColor(Color.white);
+        g.drawLine(x1,y1,x2,y2);
+    }
+    public void linkingPaintingDelete(int x1,int y1,int x2,int y2){
+        Graphics g = this.getGraphics();
+        g.setColor(new Color(35, 37, 37));
+        g.drawLine(x1,y1,x2,y2);
+    }
+
     //處理滑鼠拖曳圖形界面
    public void reverseDragLock(){
         this.dragLock = ! dragLock ;
    }
 
+   public void update() {
+        //更新所有的物件深度
+        int depthCnt = shapes.size() - 1 ;
+        for(BasicShape s : this.shapes ){
+            s.updateDepth( depthCnt );
+            depthCnt -= 1 ;
+        }
+   }
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+        this.update();
         /* set canvas area */
         Dimension dim = getSize();
         /*設定背景*/
@@ -117,12 +140,33 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 
         //選擇模式的操作
         if(modeNow!=null && modeNow.strModeType.equals("select")) {
-            draggingPaint(g, new Color(80,180 , 255, 150), 1);
+            draggingPaint(g, new Color(80,180 , 255, 60), 1);
             if (!dragLock) {
                 draggingPaint(g, new Color(35, 37, 37), 1);
                 reverseDragLock();
             }
         }
+
+        if(tempLine!=null){
+            tempLine.show(g);
+        }
+//        //畫線模式的操作
+//        if(modeNow!=null && (   modeNow.strModeType.equals("associate")||
+//                                modeNow.strModeType.equals("composite")||
+//                                modeNow.strModeType.equals("general"))
+//        ) {
+//            System.out.println("FFFFFFFFFF");
+//            g.setColor(Color.white);
+//            linkingPainting(mouse_start_x,mouse_start_y,move_x,move_y,g);
+//            if (!dragLock) {
+//                g.setColor(Color.white);
+//                linkingPainting(mouse_start_x,mouse_start_y,move_x,move_y,g);
+//                reverseDragLock();
+//            }
+//        }
+
+
+
 //        System.out.println("Shape個數："+shapes.size());
         //對每個shape做事
         if(shapes!=null){

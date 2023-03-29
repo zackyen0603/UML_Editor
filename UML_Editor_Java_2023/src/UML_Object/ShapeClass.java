@@ -14,14 +14,23 @@ public class ShapeClass extends BasicShape{
 
     @Override
     public void draw(Graphics g){
+
+
         //在畫布中有無被選中
         if(isSelected) {
+            g.setColor(Color.darkGray);
+            g.fillRect(x1, y1, width, height);
             g.setColor(Color.blue);
             draw4Ports(g);
         }
         else{
+            g.setColor(Color.black);
+            g.fillRect(x1, y1, width, height);
             g.setColor(Color.white);
         }
+
+
+
         g.drawRect(x1, y1, width, height);
 //        System.out.println("W/D:"+width+"/"+height);
 
