@@ -21,7 +21,6 @@ public abstract class BasicShape extends BasicOBJ{
     };
 
     public void move(int dx , int dy){
-        System.out.println("X/Y:"+dx+"/"+dy);
         x1 += dx ; y1 += dy ;
         x2 += dx ; y2 += dy ;
         for(Port p :ports){
@@ -64,7 +63,6 @@ public abstract class BasicShape extends BasicOBJ{
         for(Port port:ports){
             if(port.pointDistance(p)<nearestDist){
                 nearestDist = port.pointDistance(p);
-                System.out.println("Select port: "+ t );
                 retPort = port ;
             }
             t+=1;

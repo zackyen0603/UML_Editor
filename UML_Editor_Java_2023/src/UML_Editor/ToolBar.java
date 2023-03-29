@@ -8,15 +8,7 @@ import UML_Mode.BaseMode;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-//import java.awt.event.MouseEvent;
-//import java.awt.event.MouseListener;
-
 import javax.swing.*;
-
-//import UMLeditor_mode.Mode;
-//import UMLeditor_mode.createLineMode;
-//import UMLeditor_mode.createObjMode;
-//import UMLeditor_mode.selectMode;
 
 @SuppressWarnings("serial")
 public class ToolBar  extends  JToolBar{

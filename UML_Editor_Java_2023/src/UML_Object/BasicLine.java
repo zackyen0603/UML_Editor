@@ -27,7 +27,6 @@ public abstract class BasicLine extends BasicOBJ{
 
     public void show(Graphics g){
         updateLinePosition();
-        System.out.println("SHOW:"+this.x1+"/"+this.y1);
         g.setColor(Color.white);
         this.draw(g);
         g.setColor(Color.white);

@@ -7,14 +7,12 @@ import UML_Object.Group;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.EventListener;
 import java.util.List;
 
-//enum ModeNow{Select,Associate,Generalize,Compose,Class,UseCase}
 public class Canvas extends JPanel {
     public BaseMode modeNow = null ;
     public List<BasicShape> shapes = new ArrayList<BasicShape>() ;
@@ -34,12 +32,6 @@ public class Canvas extends JPanel {
     private int move_x , move_y ;
     /* Singleton design pattern */
     private Canvas() {
-        // Exists only to defeat instantiation.
-//        this.setBackground(Color.white);
-        System.out.println("Canvas!!!");
-        repaint();
-//        addMouseListener(this);
-//        addMouseMotionListener(this);
     }
 
     public static Canvas getInstance() {
@@ -80,7 +72,6 @@ public class Canvas extends JPanel {
     }
 
     public void setModeNow(String modeNow){
-        System.out.println("IsSetting: " + modeNow );
         if(modeNow.equals("select")){
             this.modeNow = new SelectMode("select");
         }

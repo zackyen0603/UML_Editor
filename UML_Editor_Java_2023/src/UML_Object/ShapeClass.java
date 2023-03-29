@@ -32,7 +32,6 @@ public class ShapeClass extends BasicShape{
 
 
         g.drawRect(x1, y1, width, height);
-//        System.out.println("W/D:"+width+"/"+height);
 
         int portion = height ;
         //class name
@@ -44,6 +43,5 @@ public class ShapeClass extends BasicShape{
         double empty = (Math.abs(x1-x2) - stringWidth)/2;
         g.setFont(font);
         g.drawString(objName, x1 + (int)empty, y1 + 25);
-//        System.out.println("ssssss");
     }
 }

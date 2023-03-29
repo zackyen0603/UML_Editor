@@ -30,33 +30,6 @@ public class LineComposition extends BasicLine{
         diamond.addPoint((int)(x2 - diamondWidth * Math.cos(angle + Math.PI/4)), (int)(y2 - diamondHeight * Math.sin(angle + Math.PI/4)));
 
         Graphics2D g2d = (Graphics2D) g.create();
-        g2d.fill(diamond);
-
-//        int h = 10 , w = 10 ;
-//
-//        // �T���Ϊ��I, �Ҽ{�u������
-//        int dx = x2 - x1, dy = y2 - y1;
-//        double D = Math.sqrt(dx*dx + dy*dy);
-//        double xm = D - w, xn = xm, ym = h, yn = -h, x;
-//        double sin = dy/D, cos = dx/D;
-//
-//        x = xm*cos - ym*sin + x1;
-//        ym = xm*sin + ym*cos + y1;
-//        xm = x;
-//
-//        x = xn*cos - yn*sin + x1;
-//        yn = xn*sin + yn*cos + y1;
-//        xn = x;
-//
-//        // ���I������X�u�W���I, �T���Ϊ��T���I�P�o���I�s�u�Y���@�ӵ٧�
-//        double xq = (h*2/D)*x1 + ((D-h*2)/D)*x2;
-//        double yq = (h*2/D)*y1 + ((D-h*2)/D)*y2;
-//
-//        int[] xPoints = {x2, (int) xm, (int) xq, (int) xn};
-//        int[] yPoints = {y2, (int) ym, (int) yq, (int) yn};
-//
-//        g.fillPolygon(xPoints, yPoints, 4);
-
-
+        g2d.draw(diamond);
     }
 }

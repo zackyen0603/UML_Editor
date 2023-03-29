@@ -16,14 +16,10 @@ public class MenuBar extends JMenuBar{
         JMenu menu;
         JMenuItem menuItem;
 
-        /* --- File menu --- */
         menu = new JMenu("File");
         add(menu);
-
-        /* --- Edit menu --- */
         menu = new JMenu("Edit");
         add(menu);
-
         menuItem = new JMenuItem("Change object name");
         menu.add(menuItem);
         menuItem.addActionListener(new ChangeNameListener());

@@ -24,10 +24,6 @@ public class CreateLineMode extends BaseMode {
         super(objType);
     }
 
-
-
-
-
     @Override
     public void mousePressed(MouseEvent e) {
         this.mouseStartX = e.getX() ;
@@ -38,8 +34,6 @@ public class CreateLineMode extends BaseMode {
             if (shape.pointInside(e.getPoint())){
                 shapeCandidate.add(shape) ;
                 vaildPoint = true ;
-//                System.out.println("PINSIDEEEEEEEEEEE!");
-//                shape.isSelected = true ;
             }
             else {
                 shape.isSelected = false;
@@ -71,7 +65,6 @@ public class CreateLineMode extends BaseMode {
         for(BasicShape shape : canvas.shapes ){
             if (shape.pointInside(e.getPoint())){
                 shapeCandidate.add(shape) ;
-                System.out.println("PINSIDEEEEEEEEEEE!");
 //                shape.isSelected = true ;
             }
             else {
@@ -106,10 +99,7 @@ public class CreateLineMode extends BaseMode {
             mouseNow = e.getPoint();
             System.out.println(e.getX() + "/" + e.getY());
 
-            canvas.tempLine =  factory.createLine(strModeType,startPort,new Port(e.getX(),e.getY(),10,10));//  LineAssociation(startPort.x1, startPort.y1, e.getX(), e.getY());
-
-//        canvas.linkingPainting(startPort.x1,startPort.y1,e.getX(),e.getY(), canvas.getGraphics());
-//        if(mouseNow==e.getPoint())
+            canvas.tempLine =  factory.createLine(strModeType,startPort,new Port(e.getX(),e.getY(),10,10));
             canvas.repaint();
         }
     }

@@ -1,8 +1,6 @@
 package UML_Mode;
 
-import UML_Object.BasicOBJ;
 import UML_Object.BasicShape;
-
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -48,8 +46,6 @@ public class SelectMode extends BaseMode {
                 selectedCount += 1 ;
             }
         }
-        System.out.println("Selected Item Count:"+selectedCount);
-
 
         //移動點選的形狀
         if(movingNow!=null){
@@ -59,11 +55,6 @@ public class SelectMode extends BaseMode {
 
         mouse_end_x = e.getX() ;
         mouse_end_y = e.getY() ;
-//        Graphics g = canvas.getGraphics();
-//        g.setColor(Color.red);
-//        move_x = e.getX() ;
-//        move_y = e.getY() ;
-        System.out.println("Mouse: "+e.getX()+","+e.getY());
 
         if(!hasSelected) {
             //建立選取範圍
@@ -130,9 +121,6 @@ public class SelectMode extends BaseMode {
 
             canvas.singleSelectedShape = selectedItem.get(0) ;
         }
-
-        System.out.println("RTETETETETET:"+selectedItem.size());
     }
-
 
 }
