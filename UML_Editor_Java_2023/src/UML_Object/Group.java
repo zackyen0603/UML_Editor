@@ -6,10 +6,10 @@ import java.util.List;
 
 public class Group extends BasicShape{
 
-    List<BasicShape> shapeList = new ArrayList<BasicShape>();
-    public Group(int x, int y, int width, int height) {
-        super(x, y, width, height);
-    }
+    List<BasicShape> shapeList = new ArrayList<>();
+//    public Group(int x, int y, int width, int height) {
+//        super(x, y, width, height);
+//    }
     public Group(List<BasicShape> list) {
         super(0,0,0,0);
         int boundX1 = Integer.MAX_VALUE, boundY1 = Integer.MAX_VALUE , boundX2 = Integer.MIN_VALUE , boundY2 = Integer.MIN_VALUE ;
@@ -40,13 +40,13 @@ public class Group extends BasicShape{
             shape.move(dx, dy);
         }
         updateDrawPoint(ports,10);
-    };
+    }
 
     @Override
     public void draw(Graphics g) {
         if(isSelected) {
             g.drawRect(x1, y1, width, height);
-            draw4Ports(g);
+//            draw4Ports(g);
         }
     }
 }

@@ -15,8 +15,8 @@ import java.util.List;
 
 public class Canvas extends JPanel {
     public BaseMode modeNow = null ;
-    public List<BasicShape> shapes = new ArrayList<BasicShape>() ;
-    public List<BasicLine> lines = new ArrayList<BasicLine>() ;
+    public List<BasicShape> shapes = new ArrayList<>() ;
+    public List<BasicLine> lines = new ArrayList<>() ;
     private static Canvas instance = null; // for singleton
 
     private EventListener listener = null;
@@ -66,8 +66,10 @@ public class Canvas extends JPanel {
         for(BasicShape shape:shapes){
             if(shape.isSelected){
                 shapes.remove(shape);
+                break;
             }
         }
+        repaint();
 
     }
 
@@ -117,16 +119,6 @@ public class Canvas extends JPanel {
             g.setColor(color);
         }
         else g.clearRect( originX, originY , w, h );
-    }
-
-    public void linkingPainting(int x1,int y1,int x2,int y2,Graphics g){
-        g.setColor(Color.white);
-        g.drawLine(x1,y1,x2,y2);
-    }
-    public void linkingPaintingDelete(int x1,int y1,int x2,int y2){
-        Graphics g = this.getGraphics();
-        g.setColor(new Color(35, 37, 37));
-        g.drawLine(x1,y1,x2,y2);
     }
 
     //處理滑鼠拖曳圖形界面

@@ -28,9 +28,6 @@ public class ShapeClass extends BasicShape{
             g.fillRect(x1, y1, width, height);
             g.setColor(Color.white);
         }
-
-
-
         g.drawRect(x1, y1, width, height);
 
         int portion = height ;
@@ -40,7 +37,7 @@ public class ShapeClass extends BasicShape{
 
         // find the width for the specified string.
         int stringWidth = g.getFontMetrics(font).stringWidth(objName);
-        double empty = (Math.abs(x1-x2) - stringWidth)/2;
+        double empty = (float)(Math.abs(x1-x2) - stringWidth)/2;
         g.setFont(font);
         g.drawString(objName, x1 + (int)empty, y1 + 25);
     }
