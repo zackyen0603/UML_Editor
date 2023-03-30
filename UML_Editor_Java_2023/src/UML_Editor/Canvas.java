@@ -63,12 +63,16 @@ public class Canvas extends JPanel {
         this.repaint();
     }
     public void removeGroup(){
+        List<BasicShape> removeList = new ArrayList<>();
         for(BasicShape shape:shapes){
-            if(shape.isSelected){
-                shapes.remove(shape);
-                break;
+            if(shape.isSelected&&shape.isGroupObject){
+                removeList.add(shape);
             }
         }
+        if(removeList.size()>0){
+            shapes.remove(removeList.get(removeList.size()-1));
+        }
+
         repaint();
 
     }

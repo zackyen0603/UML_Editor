@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Group extends BasicShape{
 
+
     List<BasicShape> shapeList = new ArrayList<>();
 //    public Group(int x, int y, int width, int height) {
 //        super(x, y, width, height);
@@ -25,6 +26,7 @@ public class Group extends BasicShape{
         this.width = x2 - x1 ;
         this.height = y2 - y1 ;
         this.objName = "Group" ;
+        isGroupObject = true ;
         initPorts();
 
 
@@ -36,8 +38,27 @@ public class Group extends BasicShape{
         for(Port p :ports){
             p.move(dx,dy);
         }
+        boolean containsGroup = false ;
         for(BasicShape shape:shapeList){
-            shape.move(dx, dy);
+            if(shape.isGroupObject) {
+                containsGroup = true ;
+                break;
+            }
+        }
+
+        if(containsGroup) {
+            for (BasicShape shape : shapeList) {
+                if (shape.isGroupObject) {
+                    shape.move(dx, dy);
+                }
+            }
+        }
+        else{
+            for (BasicShape shape : shapeList) {
+                shape.move(dx, dy);
+
+            }
+
         }
         updateDrawPoint(ports,10);
     }

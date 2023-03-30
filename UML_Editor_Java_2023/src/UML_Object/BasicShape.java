@@ -4,6 +4,8 @@ import java.awt.*;
 
 public abstract class BasicShape extends BasicOBJ{
 
+
+    public  boolean isGroupObject = false ;
     protected Font font = new Font(Font.MONOSPACED, Font.BOLD, 14);
     public int width ,height ;
     public String objName ;
@@ -18,7 +20,7 @@ public abstract class BasicShape extends BasicOBJ{
         this.x2 = this.x1 + this.width;
         this.y2 = this.y1 + this.height;
 //        this.initPorts();
-    };
+    }
 
     public void move(int dx , int dy){
         x1 += dx ; y1 += dy ;
@@ -27,7 +29,7 @@ public abstract class BasicShape extends BasicOBJ{
             p.move(dx,dy);
         }
         updateDrawPoint(ports,10);
-    };
+    }
 
     protected void initPorts(){
         int squareSize = 10 ;
@@ -59,13 +61,11 @@ public abstract class BasicShape extends BasicOBJ{
     public Port nearestPort(Point p){
         Port retPort = null ;
         double nearestDist = Double.MAX_VALUE ;
-        int t = 0 ;
         for(Port port:ports){
             if(port.pointDistance(p)<nearestDist){
                 nearestDist = port.pointDistance(p);
                 retPort = port ;
             }
-            t+=1;
         }
         return retPort ;
     }
