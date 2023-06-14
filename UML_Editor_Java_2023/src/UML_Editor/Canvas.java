@@ -25,15 +25,15 @@ public class Canvas extends JPanel {
 
     public BasicShape singleSelectedShape = null ;
 
-
     //dragLock用來處理拖曳更新
     private boolean dragLock = true ;
     private int mouse_start_x , mouse_start_y ;
     private int move_x , move_y ;
-    /* Singleton design pattern */
+
     private Canvas() {
     }
 
+    // Singleton design pattern
     public static Canvas getInstance() {
         if (instance == null) {
             instance = new Canvas();
@@ -70,6 +70,16 @@ public class Canvas extends JPanel {
             }
         }
         if(removeList.size()>0){
+            //------remove lines connect with group
+            for(int i = 0 ; i < 4 ; i+=1 ) {
+                for( int j = 0 ; j < lines.size(); j+=1) {
+                    if(lines.get(j).connectedPort[0]==removeList.get(removeList.size() - 1).ports[i]||
+                            lines.get(j).connectedPort[1]==removeList.get(removeList.size() - 1).ports[i] ) {
+                        lines.remove(lines.get(j)) ;
+                    }
+                }
+            }
+            //------
             shapes.remove(removeList.get(removeList.size()-1));
         }
 

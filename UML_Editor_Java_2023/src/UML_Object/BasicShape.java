@@ -10,7 +10,7 @@ public abstract class BasicShape extends BasicOBJ{
     public int width ,height ;
     public String objName ;
 
-    Port[] ports = null ;
+    public Port[] ports = null ;
 
     public BasicShape(int x , int y ,int width, int height){
         this.x1 = x ;

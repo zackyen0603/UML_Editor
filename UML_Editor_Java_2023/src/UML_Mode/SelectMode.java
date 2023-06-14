@@ -38,6 +38,7 @@ public class SelectMode extends BaseMode {
 
     @Override
     public void mouseDragged(MouseEvent e) {
+        this.selectRange = null ;
         selectedItem.clear();
         //單選or複選選擇
         int selectedCount = 0 ;
@@ -100,6 +101,7 @@ public class SelectMode extends BaseMode {
         if(movingNow!=null){
             movingNow.isSelected = true ;
         }
+        this.selectRange = null ;
         canvas.repaint();
 
     }

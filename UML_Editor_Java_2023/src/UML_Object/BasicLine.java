@@ -4,7 +4,7 @@ import java.awt.*;
 
 public abstract class BasicLine extends BasicOBJ{
 
-    Port[] connectedPort = null ;
+    public Port[] connectedPort = null ;
 
     public BasicLine(){}
     public BasicLine(Port p1 , Port p2){
