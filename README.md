@@ -1,4 +1,3 @@
 # UML_Editor
 
-### NCU-CSIE OOAP Course Final Project
-  Make an UML Editor with JAVA in Object-Oriented way.
+UML_Editor is a final project for the Object-Oriented Analysis and Design course at National Central University. This project is implemented in Java and follows an object-oriented design approach to create a UML diagram editor.
