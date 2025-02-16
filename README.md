@@ -28,6 +28,9 @@ UML_Editor 是一款使用 Java 開發的 UML 圖編輯器，基於 物件導向
 ## Demo 影片
 請見 https://youtu.be/PJwjMW5GghQ
 
+## 程式架構
+![UML圖](/UML.jpg)
+
 ##  功能說明
 ### A. 建立 UML 物件
 - 支援的 UML 物件
